@@ -2,7 +2,7 @@
 
 ![Use Case Diagram](https://raw.githubusercontent.com/hcirne/knit-happens/refs/heads/main/docs/W3_UseCaseDiagram.png)
 
-As *Knit Happens* takes shape, we wanted a clear overview of who can do what on our platform.
+As *KNIT HAPPENS* takes shape, we wanted a clear overview of who can do what on our platform.
 
 Our use case diagram shows the actors and their interactions with the system. It groups use cases into functional areas and uses colors to distinguish Semester 1 (green), Semester 2 (yellow), and currently unassigned features (white).
 
