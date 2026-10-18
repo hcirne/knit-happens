@@ -1,6 +1,6 @@
 # W3: Use Case Diagram
 
-![Use Case Diagram](https://github.com/hcirne/knit-happens/blob/main/docs/W3_UseCaseDiagram.png)
+![Use Case Diagram](https://raw.githubusercontent.com/hcirne/knit-happens/refs/heads/main/docs/W3_UseCaseDiagram.png)
 
 As *Knit Happens* takes shape, we wanted a clear overview of who can do what on our platform.
 
