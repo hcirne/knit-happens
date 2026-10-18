@@ -57,5 +57,5 @@ For more explanations and examples, we recommend checking out [CSE 308 – UML U
 
 ## Requirements
 
-Want to learn more about what we're planning for *Knit Happens*? Have a look at our [Software Requirements Specification](https://github.com/hcirne/knit-happens/blob/main/docs/SoftwareRequirementsSpecification.md).
+Want to learn more about what we're planning for *KNIT HAPPENS*? Have a look at our [Software Requirements Specification](https://github.com/hcirne/knit-happens/blob/main/docs/SoftwareRequirementsSpecification.md).
 
