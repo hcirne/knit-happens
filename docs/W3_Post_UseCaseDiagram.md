@@ -6,6 +6,10 @@ As *Knit Happens* takes shape, we wanted a clear overview of who can do what on 
 
 Our use case diagram shows the actors and their interactions with the system. It groups use cases into functional areas and uses colors to distinguish Semester 1 (green), Semester 2 (yellow), and currently unassigned features (white).
 
+- A Platform User is someone who interacts with our platform. (An abstraction to reduce redundancy)
+- A Visitor is a Platform User who is unregistered.
+- A Registered User is a Platform User who is registered.
+
 ## Process and Result
 
 We started with [PlantUML](https://plantuml.com/use-case-diagram), [PlantText](https://www.planttext.com/), the [PlantUML CLI](https://plantuml.com/download), and ChatGPT. With an AI-assisted optimization loop, we iteratively tried to improve the diagram's layout.
