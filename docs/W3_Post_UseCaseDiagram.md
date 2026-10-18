@@ -1,4 +1,4 @@
-# W3: Use Case Diagram
+# (W3) Our Use Case Diagram and Requirements
 
 ![Use Case Diagram](https://raw.githubusercontent.com/hcirne/knit-happens/refs/heads/main/docs/W3_UseCaseDiagram.png)
 
