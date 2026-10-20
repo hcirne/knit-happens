@@ -15,9 +15,41 @@
 The revision notices will be tracked using Git.
 
 ## Front matter 
-- Table of contents: tbd
-- List of figures: tbd
-- List of tables: tbd
+
+- [Writing conventions (course rules)](#writing-conventions-course-rules)
+- [Identification](#identification)
+  - [Revision notice](#revision-notice)
+- [Front matter](#front-matter)
+- [1. Introduction](#1-introduction)
+  - [1.1 Purpose](#11-purpose)
+  - [1.2 Scope](#12-scope)
+  - [1.3 Product overview](#13-product-overview)
+    - [1.3.1 Product perspective](#131-product-perspective)
+    - [1.3.2 Product functions](#132-product-functions)
+      - [Overall Use Case Diagram (UCD)](#overall-use-case-diagram-ucd)
+    - [1.3.3 User characteristics](#133-user-characteristics)
+    - [1.3.4 Limitations](#134-limitations)
+  - [1.4 Definitions](#14-definitions)
+- [2. References](#2-references)
+- [3. Requirements](#3-requirements)
+  - [3.1 Functions](#31-functions)
+  - [3.2 Performance requirements](#32-performance-requirements)
+  - [3.3 Usability requirements](#33-usability-requirements)
+  - [3.4 Interface requirements](#34-interface-requirements)
+  - [3.5 Logical database requirements](#35-logical-database-requirements)
+  - [3.6 Design constraints](#36-design-constraints)
+    - [3.6.1 Standards compliance](#361-standards-compliance)
+  - [3.7 Software system attributes](#37-software-system-attributes)
+    - [3.7.1 Reliability](#371-reliability)
+    - [3.7.2 Availability](#372-availability)
+    - [3.7.3 Security](#373-security)
+    - [3.7.4 Maintainability](#374-maintainability)
+    - [3.7.5 Portability](#375-portability)
+  - [3.8 Supporting information](#38-supporting-information-9620)
+- [4. Verification](#4-verification)
+- [5. Appendices](#5-appendices)
+  - [5.1 Assumptions and dependencies](#51-assumptions-and-dependencies)
+  - [5.2 Acronyms and abbreviations](#52-acronyms-and-abbreviations)
 
 ## 1. Introduction
 
@@ -58,21 +90,17 @@ KNIT HAPPENS is a new, standalone product. It is not part of a larger system. Us
 
 ##### Overall Use Case Diagram (UCD)
 
-![Overall Use Case Diagram](tbd-cloud-image-url)
+![Use Case Diagram](https://raw.githubusercontent.com/hcirne/knit-happens/refs/heads/main/docs/W3_UseCaseDiagram.png)
 
 <!-- Embed from a cloud-hosted diagram (see "UCD embedding" below) so edits to the original propagate here automatically. Do NOT paste a static screenshot. -->
 
-Legend: tbd
-- Actor: stick figure (or box with <<actor>>)
+Legend: 
+- Actor: stick figure 
 - Use case: ellipse
 - System boundary: rectangle labelled with the system name
 - Association: solid line between actor and use case
-- Dependency: dashed arrow with <<include>> or <<extend>>
+- Dependency: dashed arrow with `<<include>>` or `<<extend>>`
 - Scope (December delivery): the 5 use cases in scope are filled in color. All others stay uncolored (or grey).
-
-| UC ID | Use case (verb + object) | Actor(s) | In December scope? |
-|-------|--------------------------|----------|--------------------|
-| UC-01 | tbd | tbd | tbd |
 
 #### 1.3.3 User characteristics
 
@@ -165,7 +193,7 @@ Entities and relationships: a User has many Projects; a Project has many Comment
 ### 3.6 Design constraints
 Constraints from external standards, regulations, project limitations.
 
-- Technologies: tbd. The team currently assumes React, Java with Spring Boot and Maven, PostgreSQL, and Docker on a Linux server (see the Tech stack document). These become design constraints only if the course or the client mandates them.
+- Technologies: The team currently assumes React, Java with Spring Boot and Maven, PostgreSQL, and Docker on a Linux server (see the Tech stack document). These become design constraints only if the course or the client mandates them.
 - Time: the first delivery (December) covers the five use cases marked in the UCD (UC-01 to UC-05).
 - Regulations: tbd (e.g. data protection rules for user accounts and photos).
 
@@ -195,7 +223,7 @@ tbd
 #### 3.7.5 Portability
 tbd (supported browsers and devices; depends on the web or mobile decision in 1.1)
 
-### 3.8 Supporting information [9.6.20]
+### 3.8 Supporting information
 Sample I/O formats, cost analyses, user surveys, background information, problems to be solved, packaging instructions.
 
 - About document (project goals and assumptions): background information
