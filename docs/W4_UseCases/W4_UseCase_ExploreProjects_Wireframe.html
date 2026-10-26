@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Knit happens – Explore Projects Wireframe</title>
+  <style>
+    :root {
+      --bg: #f4f4f4;
+      --panel: #ffffff;
+      --line: #444;
+      --muted: #777;
+      --soft: #d9d9d9;
+      --accent: #ececec;
+      --radius: 14px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: var(--bg);
+      color: #222;
+    }
+
+    .page {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    h1 {
+      font-size: 28px;
+      margin: 0 0 8px 0;
+    }
+
+    .intro {
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+
+    .screens {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+    }
+
+    .screen {
+      background: var(--panel);
+      border: 2px solid var(--line);
+      border-radius: 18px;
+      min-height: 720px;
+      overflow: hidden;
+      box-shadow: 3px 3px 0 rgba(0,0,0,0.05);
+    }
+
+    .topbar {
+      border-bottom: 2px solid var(--line);
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #fafafa;
+    }
+
+    .brand {
+      font-weight: bold;
+      letter-spacing: 0.3px;
+    }
+
+    .nav {
+      display: flex;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .content {
+      padding: 18px;
+    }
+
+    .section-title {
+      font-size: 20px;
+      margin: 0 0 8px 0;
+    }
+
+    .section-subtitle {
+      margin: 0 0 18px 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .searchbar {
+      border: 2px solid var(--line);
+      border-radius: 999px;
+      padding: 10px 14px;
+      margin-bottom: 18px;
+      color: var(--muted);
+      background: #fcfcfc;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    .card {
+      border: 2px solid var(--line);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: #fff;
+    }
+
+    .thumb {
+      height: 140px;
+      background:
+        linear-gradient(135deg, #ddd 25%, transparent 25%) -10px 0/20px 20px,
+        linear-gradient(225deg, #ddd 25%, transparent 25%) -10px 0/20px 20px,
+        linear-gradient(315deg, #ddd 25%, transparent 25%) 0px 0/20px 20px,
+        linear-gradient(45deg, #ddd 25%, transparent 25%) 0px 0/20px 20px;
+      background-color: #efefef;
+      border-bottom: 2px solid var(--line);
+      position: relative;
+    }
+
+    .thumb-label {
+      position: absolute;
+      left: 12px;
+      top: 12px;
+      padding: 4px 8px;
+      border: 1.5px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.85);
+      font-size: 12px;
+    }
+
+    .card-body {
+      padding: 14px;
+    }
+
+    .card-title {
+      font-weight: bold;
+      margin-bottom: 6px;
+    }
+
+    .card-meta {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 12px;
+    }
+
+    .btn {
+      display: inline-block;
+      border: 2px solid var(--line);
+      border-radius: 999px;
+      padding: 8px 14px;
+      font-size: 14px;
+      background: var(--accent);
+    }
+
+    .empty-state {
+      min-height: 420px;
+      border: 2px dashed var(--line);
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 24px;
+      background: #fafafa;
+    }
+
+    .empty-box {
+      max-width: 240px;
+    }
+
+    .empty-icon {
+      width: 74px;
+      height: 74px;
+      border: 2px solid var(--line);
+      border-radius: 50%;
+      margin: 0 auto 16px auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      background: #fff;
+    }
+
+    .detail-hero {
+      height: 220px;
+      border: 2px solid var(--line);
+      border-radius: 16px;
+      margin-bottom: 18px;
+      background:
+        linear-gradient(135deg, #ddd 25%, transparent 25%) -10px 0/20px 20px,
+        linear-gradient(225deg, #ddd 25%, transparent 25%) -10px 0/20px 20px,
+        linear-gradient(315deg, #ddd 25%, transparent 25%) 0px 0/20px 20px,
+        linear-gradient(45deg, #ddd 25%, transparent 25%) 0px 0/20px 20px;
+      background-color: #efefef;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .detail-title {
+      font-size: 24px;
+      margin: 0 0 6px 0;
+    }
+
+    .detail-meta {
+      color: var(--muted);
+      margin-bottom: 18px;
+      font-size: 14px;
+    }
+
+    .detail-section {
+      border: 2px solid var(--line);
+      border-radius: 14px;
+      padding: 14px;
+      margin-bottom: 14px;
+      background: #fff;
+    }
+
+    .detail-section h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      font-size: 16px;
+    }
+
+    .line {
+      height: 10px;
+      background: #e5e5e5;
+      border-radius: 999px;
+      margin-bottom: 8px;
+    }
+
+    .line.short { width: 45%; }
+    .line.medium { width: 70%; }
+    .line.long { width: 100%; }
+
+    .footer-note {
+      margin-top: 24px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .screen-label {
+      border-bottom: 2px dashed var(--soft);
+      padding: 10px 18px;
+      font-size: 13px;
+      color: var(--muted);
+      background: #fcfcfc;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <h1>Knit happens – Explore Projects</h1>
+
+    <div class="screens">
+
+      <!-- SCREEN 1: FEED -->
+      <section class="screen">
+        <div class="topbar">
+          <div class="brand">KNIT HAPPENS</div>
+          <div class="nav">
+            <span>Home</span>
+            <span>Projects</span>
+            <span>Marketplace</span>
+          </div>
+        </div>
+        <div class="screen-label">Screen A — Project Feed</div>
+        <div class="content">
+          <h2 class="section-title">Explore projects</h2>
+          <p class="section-subtitle">Browse shared projects for inspiration.</p>
+
+          <div class="searchbar">Search projects, creators, patterns…</div>
+
+          <div class="card-grid">
+            <article class="card">
+              <div class="thumb">
+                <div class="thumb-label">Project photo</div>
+              </div>
+              <div class="card-body">
+                <div class="card-title">Chunky Winter Scarf</div>
+                <div class="card-meta">by Alice Miller</div>
+                <div class="btn">View project</div>
+              </div>
+            </article>
+
+            <article class="card">
+              <div class="thumb">
+                <div class="thumb-label">Project photo</div>
+              </div>
+              <div class="card-body">
+                <div class="card-title">Cable Knit Sweater</div>
+                <div class="card-meta">by Emma Fischer</div>
+                <div class="btn">View project</div>
+              </div>
+            </article>
+
+            <article class="card">
+              <div class="thumb">
+                <div class="thumb-label">Project photo</div>
+              </div>
+              <div class="card-body">
+                <div class="card-title">Beginner Beanie</div>
+                <div class="card-meta">by Noah Weber</div>
+                <div class="btn">View project</div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- SCREEN 2: EMPTY STATE -->
+      <section class="screen">
+        <div class="topbar">
+          <div class="brand">KNIT HAPPENS</div>
+          <div class="nav">
+            <span>Home</span>
+            <span>Projects</span>
+            <span>Marketplace</span>
+          </div>
+        </div>
+        <div class="screen-label">Screen B — Feed Empty State</div>
+        <div class="content">
+          <h2 class="section-title">Explore projects</h2>
+          <p class="section-subtitle">Browse shared projects for inspiration.</p>
+
+          <div class="searchbar">Search projects, creators, patterns…</div>
+
+          <div class="empty-state">
+            <div class="empty-box">
+              <div class="empty-icon">🧶</div>
+              <h3>No projects yet</h3>
+              <p>
+                There are currently no shared projects to display.
+                Please check back later.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SCREEN 3: DETAILS -->
+      <section class="screen">
+        <div class="topbar">
+          <div class="brand">KNIT HAPPENS</div>
+          <div class="nav">
+            <span>Home</span>
+            <span>Projects</span>
+            <span>Marketplace</span>
+          </div>
+        </div>
+        <div class="screen-label">Screen C — Project Details</div>
+        <div class="content">
+          <h2 class="detail-title">Chunky Winter Scarf</h2>
+          <div class="detail-meta">by Alice Miller</div>
+
+          <div class="detail-hero">Project photo</div>
+
+          <div class="detail-section">
+            <h3>Description</h3>
+            <div class="line long"></div>
+            <div class="line long"></div>
+            <div class="line medium"></div>
+          </div>
+
+          <div class="detail-section">
+            <h3>Materials</h3>
+            <div class="line medium"></div>
+            <div class="line short"></div>
+          </div>
+
+          <div class="detail-section">
+            <h3>Pattern / Notes</h3>
+            <div class="line long"></div>
+            <div class="line medium"></div>
+            <div class="line short"></div>
+          </div>
+
+          <div class="btn">Back to projects</div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</body>
+</html>
