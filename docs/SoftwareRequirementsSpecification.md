@@ -14,7 +14,7 @@
 ### Revision notice
 The revision notices will be tracked using Git.
 
-## Front matter 
+## Front matter
 
 - [Writing conventions (course rules)](#writing-conventions-course-rules)
 - [Identification](#identification)
@@ -94,13 +94,17 @@ KNIT HAPPENS is a new, standalone product. It is not part of a larger system. Us
 
 <!-- Embed from a cloud-hosted diagram (see "UCD embedding" below) so edits to the original propagate here automatically. Do NOT paste a static screenshot. -->
 
-Legend: 
-- Actor: stick figure 
+Legend:
+- Actor: stick figure
 - Use case: ellipse
 - System boundary: rectangle labelled with the system name
 - Association: solid line between actor and use case
 - Dependency: dashed arrow with `<<include>>` or `<<extend>>`
 - Scope (December delivery): the 5 use cases in scope are filled in color. All others stay uncolored (or grey).
+
+Detailed use cases:
+- [Explore Projects](W4_UseCases/W4_UseCase_ExploreProjects.md)
+- [Share Project](W4_UseCases/W4_UseCase_ShareProject.md)
 
 #### 1.3.3 User characteristics
 
