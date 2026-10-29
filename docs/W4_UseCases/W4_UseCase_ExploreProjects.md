@@ -66,7 +66,11 @@ stop
 
 ![Activity Diagram](W4_UseCase_ExploreProjects_ActivityDiagram.png)
 
-### 2.1.2 Mock-Up Wireframe
+### 2.1.2 Gherkin Narrative
+
+![Gherkin Narrative](../../src/test/UseCase_ExploreProjects.feature)
+
+### 2.1.3 Mock-Up Wireframe
 
 ![Activity Diagram](W4_UseCase_ExploreProjects_Wireframe.png)
 
