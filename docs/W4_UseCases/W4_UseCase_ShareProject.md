@@ -70,7 +70,11 @@ stop
 
 ![Activity Diagram](W4_UseCase_ShareProject_ActivityDiagram.png)
 
-### 2.1.2 Mock-Up Wireframe
+### 2.1.2 Gherkin Narrative
+
+[Gherkin Narrative](../../src/test/UseCase_ShareProject.feature)
+
+### 2.1.3 Mock-Up Wireframe
 
 ![Activity Diagram](W4_UseCase_ShareProject_Wireframe.png)
 

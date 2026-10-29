@@ -68,7 +68,7 @@ stop
 
 ### 2.1.2 Gherkin Narrative
 
-![Gherkin Narrative](../../src/test/UseCase_ExploreProjects.feature)
+[Gherkin Narrative](../../src/test/UseCase_ExploreProjects.feature)
 
 ### 2.1.3 Mock-Up Wireframe
 
