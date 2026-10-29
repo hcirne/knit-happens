@@ -1,5 +1,5 @@
 Feature: Explore projects
-  As a user
+  As a Platform User
   I want to browse shared projects
   So that I can find inspiration for my next knitting project
 

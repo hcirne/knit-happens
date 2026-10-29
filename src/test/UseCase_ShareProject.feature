@@ -1,5 +1,5 @@
 Feature: Share project
-  As a registered user
+  As a Registered user
   I want to publish a finished knitting project with photos and a description
   So that the community can see it in the feed
 
