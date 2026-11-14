@@ -1,0 +1,19 @@
+@startuml
+|Registered User|
+start
+:Open a project;
+:Write comment;
+:Press "Post";
+|System|
+if (Project still exists?) then (yes)
+  if (Comment valid?) then (yes)
+    :Save comment;
+    :Show comment under project;
+  else (no)
+    :Show validation error;
+  endif
+else (no)
+  :Show error;
+endif
+stop
+@enduml

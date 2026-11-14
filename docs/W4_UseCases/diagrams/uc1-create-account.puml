@@ -1,0 +1,19 @@
+@startuml
+|Visitor|
+start
+:Open registration page;
+:Enter email, username and password;
+:Select "Create account";
+|System|
+if (Data valid?) then (yes)
+  if (Email already used?) then (no)
+    :Create account;
+    :Show confirmation;
+  else (yes)
+    :Show error;
+  endif
+else (no)
+  :Show validation errors;
+endif
+stop
+@enduml

@@ -1,0 +1,19 @@
+@startuml
+|Registered User|
+start
+:Open login page;
+:Enter email and password;
+:Select "Log in";
+|System|
+if (Fields filled?) then (yes)
+  if (Credentials correct?) then (yes)
+    :Start session;
+    :Show home page;
+  else (no)
+    :Show login error;
+  endif
+else (no)
+  :Mark missing fields;
+endif
+stop
+@enduml

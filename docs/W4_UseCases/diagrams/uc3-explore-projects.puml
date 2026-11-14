@@ -1,0 +1,21 @@
+@startuml
+|User|
+start
+:Open project feed;
+|System|
+if (Projects exist?) then (yes)
+  :Show project cards;
+  |User|
+  :Select a project;
+  |System|
+  if (Project still exists?) then (yes)
+    :Show project details;
+  else (no)
+    :Show error;
+    :Refresh feed;
+  endif
+else (no)
+  :Show empty-state message;
+endif
+stop
+@enduml

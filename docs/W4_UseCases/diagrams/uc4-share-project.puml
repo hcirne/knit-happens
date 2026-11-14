@@ -1,0 +1,23 @@
+@startuml
+|Registered User|
+start
+:Open "Share project";
+:Enter title and description;
+:Upload photo(s);
+if (Publish or cancel?) then (publish)
+  |System|
+  if (Required fields filled?) then (yes)
+    if (Upload valid?) then (yes)
+      :Save project;
+      :Show project in feed;
+    else (no)
+      :Show upload error;
+    endif
+  else (no)
+    :Mark missing fields;
+  endif
+else (cancel)
+  :Discard input;
+endif
+stop
+@enduml
