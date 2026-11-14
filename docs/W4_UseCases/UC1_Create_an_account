@@ -1,0 +1,68 @@
+# UC1: Create account
+
+**Type:** CRUD – Create (creates a user account)
+**Primary actor:** User
+**Related use cases:** UC2 (the new user can then log in)
+
+### Revision History
+
+| Version | Date | Description | Author |
+|---|---|---|---|
+| 0.1.1 | 2026-11-14 | Initial draft in the new format | Mariana |
+
+## 1. Use-Case Name
+Create account
+
+### 1.1 Brief Description
+A User registers by entering an email, a username and a password. The system validates the data, creates the account, and confirms it. The new Registered User can then log in, share projects and comment.
+
+Behavior as executable scenarios: [UC1 feature file](features/uc1_create_account.feature)
+
+## 2. Flow of Events
+
+### 2.1 Wireframe
+![UC1 wireframe – registration form](wireframes/uc1-create-account.png)
+
+### 2.2 Activity Diagram
+![UC1 activity diagram](diagrams/uc1-create-account.png)
+
+### 2.3 Basic Flow
+1. The User opens the registration page.
+2. The system shows the registration form (email, username, password).
+3. The User enters the data and selects "Create account".
+4. The system validates the data.
+5. The system checks that the email is not already registered.
+6. The system creates the account and stores the password in hashed form.
+7. The system shows a confirmation and offers to log in.
+8. The use case ends.
+
+### 2.4 Alternative Flows
+
+**A1: Data is invalid or incomplete** (at step 4)
+1. The system marks the invalid fields and explains what is wrong (for example, an email without "@" or an empty username).
+2. The flow continues at step 3.
+
+**A2: Password is too weak** (at step 4)
+1. The system explains the password rules.
+2. The flow continues at step 3.
+
+**A3: Email already registered** (at step 5)
+1. The system shows an error that the email is already in use and offers to log in.
+2. The User either continues at step 3 with another email, or the use case ends and UC2 can be started.
+
+## 3. Special Requirements
+- Passwords are never stored in plain text.
+- Password rules: *tbd*.
+- Whether usernames must be unique: *tbd*.
+- Data is sent over an encrypted connection (HTTPS).
+
+## 4. Preconditions
+- The user is not logged in.
+- No account with the entered email exists yet.
+
+## 5. Postconditions
+- **Success:** An account with the role Registered User exists, and the user can log in.
+- **Failure (A1 to A3 without retry):** No account is created.
+
+## 6. Extension Points
+None.
