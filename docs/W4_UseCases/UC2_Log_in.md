@@ -1,3 +1,5 @@
+# UC2: Log in
+
 **Type:** Authentication (reads the account data, creates a session)
 **Primary actor:** Registered User (a person with an account who is not yet logged in)
 **Related use cases:** UC1 (creates the account), UC4 and UC5 (require a logged-in user)
