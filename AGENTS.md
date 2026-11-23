@@ -13,12 +13,15 @@ Knit Happens is a web app for knitters. Users share their projects with the mate
 
 ## Commands
 ```bash
-docker compose up -d          # start Postgres
-npm install
+cp .env.example .env          # first run only, then set AUTH_SECRET as described in it
+docker compose up -d --wait   # start Postgres, wait until it accepts connections
+npm install                   # also generates the Prisma client (postinstall)
 npx prisma migrate dev        # apply migrations / create a new one
 npm run dev                   # start the app at http://localhost:3000
 npm run lint
 ```
+
+After editing `prisma/schema.prisma`, run `npx prisma migrate dev` **and** `npx prisma generate`. In Prisma 7 the migrate command no longer regenerates the client, and a stale client fails with a misleading "does not provide an export named 'PrismaClient'".
 
 ## Use cases (current milestone)
 | ID    | Use case                    |
