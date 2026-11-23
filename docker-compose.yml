@@ -1,0 +1,44 @@
+# PostgreSQL for Knit Happens.
+#
+# The same image and settings are used locally and in production next semester, so
+# the database behaves identically in both places.
+#
+#   docker compose up -d      start the database
+#   docker compose down       stop it (data is kept in the named volume)
+#   docker compose down -v    stop it and delete all data
+#   docker compose logs -f db follow the logs
+#
+# Compose reads the values below from the .env file in this directory. The defaults
+# after ":-" are used when .env is missing, so a fresh clone still starts.
+
+services:
+  db:
+    image: postgres:17-alpine
+    container_name: knit-happens-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-knit}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-knit_local_dev}
+      POSTGRES_DB: ${POSTGRES_DB:-knit_happens}
+    ports:
+      # Published so Prisma and `npm run dev` on the host can reach the database.
+      # Bound to 127.0.0.1 so it is reachable from this machine only: the
+      # development credentials are committed in .env.example, so the port must
+      # not be exposed to the local network.
+      - "127.0.0.1:${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    healthcheck:
+      # `docker compose up -d --wait` blocks until this passes, which stops
+      # `prisma migrate dev` from running before Postgres finishes starting.
+      test:
+        [
+          "CMD-SHELL",
+          "pg_isready -U ${POSTGRES_USER:-knit} -d ${POSTGRES_DB:-knit_happens}",
+        ]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  db-data:
