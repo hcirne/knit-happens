@@ -32,6 +32,11 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+# ...but .env.example documents the required variables and must be committed.
+!.env.example
+
+# uploaded project photos (UC-04) — local only, never committed
+/public/uploads
 
 # vercel
 .vercel
