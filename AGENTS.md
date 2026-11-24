@@ -26,11 +26,13 @@ After editing `prisma/schema.prisma`, run `npx prisma migrate dev` **and** `npx 
 ## Use cases (current milestone)
 | ID    | Use case                    |
 |-------|-----------------------------|
-| UC-01 | Sign up                     |
+| UC-01 | Create an account           |
 | UC-02 | Log in                      |
-| UC-03 | Share project               |
-| UC-04 | Explore projects            |
-| UC-05 | Project detail & comments   |
+| UC-03 | Explore projects            |
+| UC-04 | Share project               |
+| UC-05 | Comment on project          |
+
+The use case documents in `docs/W4_UseCases/` are the source of truth for numbering, names and behaviour. If anything else disagrees with them (mockups, this file, the SRS), follow the use case document.
 
 Work on one use case at a time. Don't change code that belongs to another use case.
 
