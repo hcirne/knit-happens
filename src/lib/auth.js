@@ -14,7 +14,7 @@ function secret() {
   if (process.env.NODE_ENV === "production") {
     throw new Error("SESSION_SECRET must be set in production.");
   }
-  return "dev-only-secret-change-me"; // local development only
+  return "dev-only-secret-change-me"; // local development 0nly
 }
 
 const sign = (text) => crypto.createHmac("sha256", secret()).update(text).digest("base64url");
