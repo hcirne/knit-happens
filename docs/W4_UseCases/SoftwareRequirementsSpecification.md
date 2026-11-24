@@ -190,14 +190,14 @@ Entities and relationships: a User has many Projects; a Project has many Comment
 |----|-------------|----------|--------|--------------|
 | DR-001 | The system shall store for each user a username, an email address and a password hash. | High | UCD (UC-01) | Inspection |
 | DR-002 | The system shall keep each email address unique across all accounts. | High | UCD (UC-01) | Test |
-| DR-003 | The system shall store for each project a title, at least one photo, a description (tbd: required or optional), its author and its publication date. | High | UCD (UC-03) | Inspection |
+| DR-003 | The system shall store for each project a title, at least one photo, a description (tbd: required or optional), its author and its publication date. | High | UCD (UC-04) | Inspection |
 | DR-004 | The system shall store for each comment its text, its author, its time and the project it belongs to. | High | UCD (UC-05) | Inspection |
 | DR-005 | The system shall keep data for tbd (retention period), and shall handle the content of a deleted account as tbd. | Low | tbd | tbd |
 
 ### 3.6 Design constraints
 Constraints from external standards, regulations, project limitations.
 
-- Technologies: The team currently assumes React, Java with Spring Boot and Maven, PostgreSQL, and Docker on a Linux server (see the Tech stack document). These become design constraints only if the course or the client mandates them.
+- Technologies: The team has decided on Next.js (App Router) in JavaScript, Tailwind CSS, PostgreSQL run in Docker, Prisma as the ORM (all schema changes through migrations), and Auth.js with email and password (Credentials provider, JWT sessions, bcrypt-hashed passwords). Deployment next semester is Docker on a Linux server, with CI/CD in GitHub Actions. `AGENTS.md` keeps the current list (see also the Tech stack document).
 - Time: the first delivery (December) covers the five use cases marked in the UCD (UC-01 to UC-05).
 - Regulations: tbd (e.g. data protection rules for user accounts and photos).
 
