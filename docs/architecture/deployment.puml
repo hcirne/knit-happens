@@ -1,0 +1,41 @@
+@startuml deployment
+title Knit Happens - Deployment (local demo)
+skinparam shadowing false
+skinparam defaultFontName SansSerif
+skinparam node {
+  BackgroundColor #FCF3F5
+  BorderColor #3F2C29
+}
+skinparam artifact {
+  BackgroundColor #C6DBCA
+  BorderColor #3F2C29
+}
+skinparam database {
+  BackgroundColor #F2CFB6
+  BorderColor #3F2C29
+}
+
+node "Client PC" <<device>> as client {
+  node "Web browser" <<executionEnvironment>> as browser
+}
+
+node "Developer machine (macOS/Linux)" <<device>> as dev {
+  node "Node.js" <<executionEnvironment>> as nodejs {
+    artifact "Next.js app\n(npm run dev)\nport 3000" as app
+  }
+  node "Docker Engine" <<executionEnvironment>> as docker {
+    node "knit-happens-db\n(postgres:17-alpine)\nport 127.0.0.1:5432" <<container>> as pg {
+      database "knit_happens" as db
+      artifact "volume: db-data" as vol
+    }
+  }
+}
+
+browser --> app : HTTP :3000
+app --> pg : TCP 127.0.0.1:5432 (Prisma)
+
+note bottom of client
+  In the local demo the browser and the
+  developer machine are the same computer.
+end note
+@enduml
