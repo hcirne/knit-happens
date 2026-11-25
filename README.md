@@ -161,4 +161,5 @@ If port 5432 is already used on your machine, change `POSTGRES_PORT` and the por
 - [`docs/W4_UseCases/`](docs/W4_UseCases/): the use cases (source of truth)
 - [`docs/W4_UseCases/SoftwareRequirementsSpecification.md`](docs/W4_UseCases/SoftwareRequirementsSpecification.md): requirements
 - [`docs/W3_UseCaseDiagram.png`](docs/W3_UseCaseDiagram.png): use case diagram
+- [`docs/architecture/Architecture.md`](docs/architecture/Architecture.md): software architecture document
 - [`docs/mockups/`](docs/mockups/): UI mockups
