@@ -7,6 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "docs:erd": "node scripts/erd.mjs",
+    "docs:classes": "node scripts/class-diagram.mjs",
     "postinstall": "prisma generate"
   },
   "dependencies": {
