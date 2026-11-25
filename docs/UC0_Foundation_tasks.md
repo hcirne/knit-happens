@@ -105,6 +105,8 @@ states, and UC-03's empty-feed alternative flow.
 
 ## UC0-6 · Auth.js configuration
 
+> **Superseded (KH-105):** the team decided not to use Auth.js. Sessions are a custom signed cookie in `src/lib/auth.js` using `SESSION_SECRET`. The rest of this section is kept for history.
+
 `next-auth@beta`, Credentials provider, JWT session strategy, bcryptjs. `src/auth.js`
 exporting `handlers` / `auth` / `signIn` / `signOut`, route handler at
 `src/app/api/auth/[...nextauth]/route.js`, and a `requireUser()` helper for server

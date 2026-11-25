@@ -8,12 +8,12 @@ Knit Happens is a web app for knitters. Users share their projects with the mate
 - **Styling:** Tailwind CSS
 - **Database:** PostgreSQL, run in Docker (`docker-compose.yml`), the same setup locally and in production
 - **ORM:** Prisma, with every schema change made through Prisma migrations
-- **Auth:** Auth.js with the Credentials provider (email and password only), JWT session strategy, and passwords hashed with bcrypt
+- **Auth:** custom signed-cookie session in `src/lib/auth.js` (HMAC-SHA256 with `SESSION_SECRET`, httpOnly cookie, 7 days), email and password only, passwords hashed with bcrypt. No Auth.js.
 - **Deployment (next semester):** Docker on a Linux server, with CI/CD in GitHub Actions
 
 ## Commands
 ```bash
-cp .env.example .env          # first run only, then set AUTH_SECRET as described in it
+cp .env.example .env          # first run only, then set SESSION_SECRET as described in it
 docker compose up -d --wait   # start Postgres, wait until it accepts connections
 npm install                   # also generates the Prisma client (postinstall)
 npx prisma migrate dev        # apply migrations / create a new one
@@ -37,7 +37,7 @@ The use case documents in `docs/W4_UseCases/` are the source of truth for number
 Work on one use case at a time. Don't change code that belongs to another use case.
 
 ## Shared code: ask before changing
-The Prisma schema, the Auth.js config, the root layout and the shared UI components are used by every use case. Before changing any of them, explain the change and wait for approval.
+The Prisma schema, the auth code (`src/lib/auth.js` and `src/app/api/auth/`), the root layout and the shared UI components are used by every use case. Before changing any of them, explain the change and wait for approval.
 
 ## Design
 Follow the team mockups. Define the values below in the Tailwind theme instead of hard-coding them.
