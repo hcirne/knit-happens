@@ -197,7 +197,7 @@ Entities and relationships: a User has many Projects; a Project has many Comment
 ### 3.6 Design constraints
 Constraints from external standards, regulations, project limitations.
 
-- Technologies: The team has decided on Next.js (App Router) in JavaScript, Tailwind CSS, PostgreSQL run in Docker, Prisma as the ORM (all schema changes through migrations), and Auth.js with email and password (Credentials provider, JWT sessions, bcrypt-hashed passwords). Deployment next semester is Docker on a Linux server, with CI/CD in GitHub Actions. `AGENTS.md` keeps the current list (see also the Tech stack document).
+- Technologies: The team has decided on Next.js (App Router) in JavaScript, Tailwind CSS, PostgreSQL run in Docker, Prisma as the ORM (all schema changes through migrations), and a custom signed-cookie session with email and password (HMAC-signed cookie, bcrypt-hashed passwords). Deployment next semester is Docker on a Linux server, with CI/CD in GitHub Actions. `AGENTS.md` keeps the current list (see also the Tech stack document).
 - Time: the first delivery (December) covers the five use cases marked in the UCD (UC-01 to UC-05).
 - Regulations: tbd (e.g. data protection rules for user accounts and photos).
 
