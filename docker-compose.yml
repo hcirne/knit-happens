@@ -21,7 +21,7 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-knit_local_dev}
       POSTGRES_DB: ${POSTGRES_DB:-knit_happens}
     ports:
-      # Published so Prisma and `npm run dev` on the host can reach the database.
+      # Published so the Spring Boot backend running on the host can reach the database.
       # Bound to 127.0.0.1 so it is reachable from this machine only: the
       # development credentials are committed in .env.example, so the port must
       # not be exposed to the local network.
@@ -29,8 +29,8 @@ services:
     volumes:
       - db-data:/var/lib/postgresql/data
     healthcheck:
-      # `docker compose up -d --wait` blocks until this passes, which stops
-      # `prisma migrate dev` from running before Postgres finishes starting.
+      # `docker compose up -d --wait` blocks until this passes, so the backend
+      # (and its Flyway migrations) is not started before Postgres is ready.
       test:
         [
           "CMD-SHELL",

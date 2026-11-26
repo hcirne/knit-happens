@@ -1,3 +1,4 @@
+@wip
 Feature: Explore projects
 	As a Platform User
 	I want to browse shared projects
