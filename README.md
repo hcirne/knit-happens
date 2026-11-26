@@ -2,164 +2,78 @@
 
 Knit Happens is a web app for knitters. Users share their projects with the materials and stores they used, buy and sell patterns (payments are simulated), and find yarn stores. It is a team project for a university software engineering module.
 
-**Stack:** Next.js 16 (App Router, JavaScript), Tailwind CSS 4, PostgreSQL 17 in Docker, Prisma 7, custom signed-cookie sessions with bcrypt-hashed passwords.
+**Stack:** Spring Boot 4.2 (Java, Maven) backend with Spring Data JPA, Flyway and Spring Security; React (Vite, plain CSS) frontend; PostgreSQL 17 in Docker; Cucumber-JVM tests with Testcontainers.
+
+**Rebuild status:** the app was a Next.js prototype and is being rebuilt on Spring Boot and React (plan: [`docs/rebuild/REBUILD_PLAN.md`](docs/rebuild/REBUILD_PLAN.md), adjustments: [`docs/rebuild/SETUP_ADJUSTMENTS.md`](docs/rebuild/SETUP_ADJUSTMENTS.md)). The old prototype is kept in the branch `archive/nextjs-prototype`. Right now only the skeletons exist: the database schema, `GET /api/health`, and a React page that calls it. The use case endpoints and pages are rebuilt in the next phases.
 
 ## Prerequisites
 
-- Node.js 20.9 or newer
-- Docker Desktop (it must be running)
+- JDK 21 or newer (the Maven wrapper `./mvnw` downloads Maven itself)
+- Docker (it must be running; it also runs the tests' database)
+- Node.js 22.22 or newer with npm (needed by React Router 8; Vite itself needs Node 20.19+)
 - git
-- curl (for the API demo)
-- openssl (to generate the session secret)
 
 ## First-time setup
 
 1. Clone the repository and open the folder in a terminal.
-2. Create your local env file:
+2. Create your local env file. Both Docker Compose and the backend read it. Never commit `.env`.
    ```bash
    cp .env.example .env
    ```
-3. Generate a secret and paste it after `SESSION_SECRET=` in `.env`:
-   ```bash
-   openssl rand -base64 32
-   ```
-   In development the app uses a built-in fallback if `SESSION_SECRET` is empty, but you should set your own. It is **required** in production. Never commit `.env`.
-4. Start PostgreSQL and wait until it is ready:
+3. Start PostgreSQL and wait until it is ready:
    ```bash
    docker compose up -d --wait
    ```
-5. Install dependencies (this also runs `prisma generate`):
+   **Do you still have the database of the old Next.js version?** Reset it once with `docker compose down -v`, then run the command above again. Flyway needs an empty schema and would stop on the old Prisma tables.
+4. Start the backend (Flyway creates the tables on the first start):
    ```bash
+   cd backend
+   ./mvnw spring-boot:run
+   ```
+   Check it: http://localhost:8080/api/health shows `{"status":"ok"}`.
+5. In a second terminal, start the frontend:
+   ```bash
+   cd frontend
    npm install
-   ```
-6. Apply the database migrations:
-   ```bash
-   npx prisma migrate deploy
-   ```
-7. Generate the Prisma client:
-   ```bash
-   npx prisma generate
-   ```
-8. Start the app:
-   ```bash
    npm run dev
    ```
-   Open http://localhost:3000.
+   Open http://localhost:5173. The page should say "Backend is running." The dev server forwards `/api` requests to the backend on port 8080.
 
-**Prisma 7 note:** the migrate commands no longer regenerate the Prisma client. If you see the error `does not provide an export named 'PrismaClient'`, run `npx prisma generate`. After you edit `prisma/schema.prisma`, run `npx prisma migrate dev --name <change>` and then `npx prisma generate`.
-
-## Demo: UC-01 Create an account (and User CRUD)
-
-### 4a. In the browser
-
-1. Open http://localhost:3000/register.
-2. Basic flow: fill in email (for example `demo@example.com`), username (`knitter_demo`) and a password of at least 8 characters, then click **Create account**. The page shows "Account created" and "Welcome, knitter_demo! You can now log in."
-
-Alternative flows (try them on the same form):
-
-| Flow | What to enter | What you see |
-|------|---------------|--------------|
-| A1: invalid or incomplete data | An email without `@`, or an empty username | Banner "Please check your input." and under the field "Enter a valid email." or "Use 3 to 30 letters, numbers, dots, dashes or underscores." |
-| A2: weak password | A password shorter than 8 characters | Banner "Please check your input." and under the password field "Use at least 8 characters." |
-| A3: email already registered | Register `demo@example.com` a second time | Banner "This email is already registered. Try logging in." with a Log in link |
-
-If the email is new but the username is taken, you see "This username is already taken." and under the username field "Choose another username."
-
-You can also open http://localhost:3000/account to see the account page (view, edit and delete). It needs a session, so use it after logging in with curl (see the limitations below).
-
-### 4b. With curl (register, log in, read, update, delete)
-
-Run these in order from the project folder. `cookies.txt` is a cookie jar: curl stores the `kh_session` cookie there and sends it back on later requests. `-i` shows the status line and headers.
+## Tests
 
 ```bash
-# 1. Create the account  (expect 201)
-curl -i -X POST http://localhost:3000/api/auth/register \
-  -H "Content-Type: application/json" \
-  -d '{"email":"demo@example.com","username":"knitter_demo","password":"yarn-and-needles"}'
-
-# 2. Log in  (expect 200 and a Set-Cookie: kh_session=... header)
-curl -i -c cookies.txt -b cookies.txt -X POST http://localhost:3000/api/auth/login \
-  -H "Content-Type: application/json" \
-  -d '{"email":"demo@example.com","password":"yarn-and-needles"}'
-
-# 3. Who am I?  (expect 200 and {"user":{"id":"...","username":"knitter_demo"}})
-curl -i -c cookies.txt -b cookies.txt http://localhost:3000/api/auth/me
-
-# 4. Read the account  (expect 200: id, username, email, createdAt, never the password)
-curl -i -c cookies.txt -b cookies.txt http://localhost:3000/api/users/me
-
-# 5. Update the username  (expect 200 and "Account updated.")
-curl -i -c cookies.txt -b cookies.txt -X PATCH http://localhost:3000/api/users/me \
-  -H "Content-Type: application/json" \
-  -d '{"username":"knitter_renamed"}'
-
-# 6. Delete the account  (expect 200 and "Account deleted."; the session cookie is cleared)
-curl -i -c cookies.txt -b cookies.txt -X DELETE http://localhost:3000/api/users/me \
-  -H "Content-Type: application/json" \
-  -d '{"password":"yarn-and-needles"}'
-
-# 7. Read again  (expect 401 and "You need to log in.")
-curl -i -c cookies.txt -b cookies.txt http://localhost:3000/api/users/me
+cd backend
+./mvnw verify
 ```
 
-When you are done: `rm cookies.txt`.
+This runs the Spring Boot tests and the Cucumber scenarios against a real PostgreSQL started by Testcontainers, so Docker must be running. The report is written to `backend/target/cucumber-report.html`. The feature files are in [`docs/features/`](docs/features/). Scenarios tagged `@wip` have no step definitions yet and are skipped.
 
-Errors come back as JSON: `{"error":"message"}`, plus `"fields":{"email":"..."}` when a specific field is wrong.
-
-| Status | When | Message |
-|--------|------|---------|
-| 400 | Register: invalid email, username or password | "Please check your input." (with `fields`) |
-| 400 | Log in: empty email or password | "Please fill in all fields." |
-| 400 | Update: no `email` or `username` sent | "Nothing to update." |
-| 400 | Delete: no password sent | "Enter your password to confirm." |
-| 401 | Log in: wrong email or password (same message for both) | "Email or password is incorrect." |
-| 401 | Read, update or delete without a session | "You need to log in." |
-| 403 | Delete: wrong password | "Password is incorrect." |
-| 409 | Register: email already used | "This email is already registered. Try logging in." |
-| 409 | Register or update: username already used | "This username is already taken." |
-| 409 | Update: email already used by someone else | "This email is already registered." |
-| 409 | Delete: the user still has projects or comments | "Delete your projects and comments before deleting your account." |
-
-The last 409 exists because the database schema uses `onDelete: Restrict` for project and comment authors, so an account cannot be removed while it owns content.
-
-### 4c. Optional: look at the database
-
-```bash
-npx prisma studio
-```
-
-Open the `User` table. Passwords are stored only as bcrypt hashes (`passwordHash`), never as plain text.
-
-## How login sessions work
-
-When you log in, the server sets a cookie named `kh_session` with the value `userId.expiry.signature`. The signature is an HMAC-SHA256 of `userId.expiry` made with `SESSION_SECRET`, so nobody can change the user id or the expiry without the server noticing. The cookie is `httpOnly` (JavaScript in the browser cannot read it), `sameSite=lax`, and `secure` in production. It expires after 7 days. Logging out clears the cookie. A copy of the cookie stays valid until it expires, which is acceptable for this project. Passwords are hashed with bcrypt. The code is in `src/lib/auth.js`.
-
-We deliberately do not use Auth.js. Our custom session is about 60 lines and easy to explain, and the Auth.js Credentials provider would not remove the need for our own registration code.
-
-## Current limitations
-
-- There is no `/login` page yet (UC-02 comes later). Log in with curl as shown in the demo. The `/register` and `/account` pages link to `/login`, which shows a 404 for now.
-- The home page is still the Next.js starter page.
-- The app runs locally only. Public deployment (Docker on a Linux server with GitHub Actions CI/CD) is planned for semester 2.
+For the frontend: `npm run lint` and `npm run build` (in `frontend/`).
 
 ## Useful commands
 
 ```bash
-npm run lint                # check the code style
 docker compose logs -f db   # follow the database logs
 docker compose down         # stop Postgres, keep the data
 docker compose down -v      # stop Postgres and DELETE all data
 ```
 
-To stop the app, press Ctrl+C in the terminal running `npm run dev`.
+To stop the backend or the frontend, press Ctrl+C in its terminal.
 
-If port 5432 is already used on your machine, change `POSTGRES_PORT` and the port inside `DATABASE_URL` in `.env`, then run `docker compose up -d --wait` again.
+If port 5432 is already used on your machine, change `POSTGRES_PORT` in `.env` and run `docker compose up -d --wait` again. The backend reads the same value.
+
+## Current limitations
+
+- Only the health endpoint and the skeleton pages exist. Registration, login, projects and comments come with the next phases.
+- The app runs locally only. Public deployment (Docker on a Linux server with GitHub Actions CI/CD) is planned for semester 2.
 
 ## Project docs
 
 - [`AGENTS.md`](AGENTS.md): team and agent conventions
+- [`docs/rebuild/REBUILD_PLAN.md`](docs/rebuild/REBUILD_PLAN.md): the rebuild plan
 - [`docs/W4_UseCases/`](docs/W4_UseCases/): the use cases (source of truth)
 - [`docs/W4_UseCases/SoftwareRequirementsSpecification.md`](docs/W4_UseCases/SoftwareRequirementsSpecification.md): requirements
+- [`docs/features/`](docs/features/): Gherkin feature files
 - [`docs/W3_UseCaseDiagram.png`](docs/W3_UseCaseDiagram.png): use case diagram
-- [`docs/architecture/Architecture.md`](docs/architecture/Architecture.md): software architecture document
+- [`docs/architecture/Architecture.md`](docs/architecture/Architecture.md): software architecture document (describes the old Next.js version until it is regenerated)
 - [`docs/mockups/`](docs/mockups/): UI mockups
