@@ -1,0 +1,35 @@
+/* Design tokens from AGENTS.md ("Design"). Use these variables in CSS; do not hard-code values. */
+:root {
+  /* Colours */
+  --color-pink: #efc3ce;        /* buttons, highlights, link underlines */
+  --color-peach: #f2cfb6;       /* warm accents, footers */
+  --color-sage: #c6dbca;        /* secondary panels, selected filters */
+  --color-page: #fcf3f5;        /* page background */
+  --color-card: #ffffff;        /* cards and header */
+  --color-ink: #3f2c29;         /* text */
+  --color-ink-soft: #5e4a45;    /* secondary text */
+  --color-line: #efe2e0;        /* borders */
+  --color-input-line: #d9c6c3;  /* input borders */
+  --color-error: #b42318;       /* error text */
+  --color-error-bg: #fef3f2;    /* error background */
+
+  /* Fonts (loaded by the Google Fonts link in index.html) */
+  --font-heading: 'Bricolage Grotesque', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+  --font-size-body: 16px;
+
+  /* Shapes */
+  --radius-card: 16px;
+  --radius-button: 9999px; /* fully rounded */
+
+  /* Spacing scale */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 16px;
+  --space-4: 24px;
+  --space-5: 48px;
+
+  /* Layout */
+  --content-max-width: 1200px;
+  --side-padding: 32px;
+}
