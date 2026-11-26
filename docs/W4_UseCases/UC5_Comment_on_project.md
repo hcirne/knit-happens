@@ -4,13 +4,6 @@
 **Primary actor:** Registered User
 **Related use cases:** UC2 (the user must be logged in), UC3 (the user opens the project from the feed)
 
-### Revision History
-
-| Version | Date | Description | Author |
-|---|---|---|---|
-| 1.1 | 2026-10-20 | Initial draft | Mariana |
-| 1.1 | 2026-11-14 | Updated raft in the new format | Mariana |
-
 ## 1. Use-Case Name
 Comment on project
 

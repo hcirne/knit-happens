@@ -4,13 +4,6 @@
 **Primary actor:** Registered User
 **Related use cases:** UC2 (the user must be logged in), UC3 (shows the shared projects in the feed)
 
-### Revision History
-
-| Version | Date | Description | Author |
-|---|---|---|---|
-| 0.1 | 2026-10-22 | Initial draft in the new format | Fabian |
-| 1.1 | 2026-11-14 | Draft in the new format | Mariana |
-
 ## 1. Use-Case Name
 Share project
 

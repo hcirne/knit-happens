@@ -4,13 +4,6 @@
 **Primary actor:** Platform User (User or Registered User)
 **Related use cases:** UC4 (creates the projects shown in the feed), UC5 (starts from a project's detail page)
 
-### Revision History
-
-| Version | Date | Description | Author |
-|---|---|---|---|
-| 1.0 | 2026-10-22 | Initial draft | Fabian |
-| 1.1 | 2026-11-14 | Draft in the new format | Mariana |
-
 ## 1. Use-Case Name
 Explore projects
 
