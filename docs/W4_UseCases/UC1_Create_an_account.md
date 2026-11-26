@@ -4,13 +4,6 @@
 **Primary actor:** User
 **Related use cases:** UC2 (the new user can then log in)
 
-### Revision History
-
-| Version | Date | Description | Author |
-|---|---|---|---|
-| 1.0 | 2026-10-20 | Initial draft | Mariana |
-| 1.1 | 2026-11-14 | Updated draft in the new format | Mariana |
-
 ## 1. Use-Case Name
 Create account
 

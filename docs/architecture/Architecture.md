@@ -1,11 +1,5 @@
 # Knit Happens — Software Architecture Document
 
-| | |
-|---|---|
-| **Version** | 1.0 |
-| **Date** | 2026-11-25 |
-| **Ticket** | KH-107 |
-
 ## 1. Introduction
 
 This document describes the software architecture of Knit Happens, a web app where knitters share projects, trade patterns and find yarn stores. It explains how the code is organised (MVC), which technologies we use and how the system is deployed.
@@ -97,11 +91,7 @@ Source: [deployment.puml](deployment.puml). Render it locally (nothing is sent t
 docker run --rm -v "$PWD/docs/architecture:/data" plantuml/plantuml -tpng /data/deployment.puml
 ```
 
-## 8. n/a
-
-Not applicable: this section of the RUP template has no content for this project.
-
-## 9. EER model
+## 8. EER model
 
 ![Entity-relationship diagram](erd.png)
 
@@ -113,11 +103,3 @@ The diagram is auto-generated from `prisma/schema.prisma` by `npm run docs:erd`.
 - **Comment** belongs to one Project and one User (author).
 - Deleting a User who still has Projects or Comments is blocked (`onDelete: Restrict` on both author relations).
 - Deleting a Project also deletes its Photos and Comments (`onDelete: Cascade`).
-
-## 10. n/a
-
-Not applicable: this section of the RUP template has no content for this project.
-
-## 11. n/a
-
-Not applicable: this section of the RUP template has no content for this project.

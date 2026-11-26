@@ -4,13 +4,6 @@
 **Primary actor:** Registered User (a person with an account who is not yet logged in)
 **Related use cases:** UC1 (creates the account), UC4 and UC5 (require a logged-in user)
 
-### Revision History
-
-| Version | Date | Description | Author |
-|---|---|---|---|
-| 1.0 | 2026-10-22 | Initial draft | Mariana |
-| 1.1 | 2026-11-14 | Draft in a new format | Mariana |
-
 ## 1. Use-Case Name
 Log in
 
