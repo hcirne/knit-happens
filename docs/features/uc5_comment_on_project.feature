@@ -1,3 +1,4 @@
+@wip
 Feature: Comment on project
   As a registered user
   I want to comment on a shared project

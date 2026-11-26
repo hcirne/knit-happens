@@ -1,3 +1,4 @@
+@wip
 Feature: Share project
 	As a Registered user
 	I want to publish a finished knitting project with photos and a description
